@@ -1,0 +1,68 @@
+﻿{
+    "$schema":  "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion":  "1.0.0.0",
+    "parameters":  {
+                       "workspace":  {
+                                         "type":  "String"
+                                     }
+                   },
+    "resources":  [
+                      {
+                          "id":  "[concat(resourceId(\u0027Microsoft.OperationalInsights/workspaces/providers\u0027, parameters(\u0027workspace\u0027), \u0027Microsoft.SecurityInsights\u0027),\u0027/alertRules/8e9e1bee-a684-4dbd-a565-8abeb5302dce\u0027)]",
+                          "name":  "[concat(parameters(\u0027workspace\u0027),\u0027/Microsoft.SecurityInsights/8e9e1bee-a684-4dbd-a565-8abeb5302dce\u0027)]",
+                          "type":  "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+                          "kind":  "Scheduled",
+                          "apiVersion":  "2023-12-01-preview",
+                          "properties":  {
+                                             "displayName":  "Test Signin Rule",
+                                             "description":  "CI/CD deployment validation - version 1",
+                                             "severity":  "Medium",
+                                             "enabled":  false,
+                                             "query":  "SigninLogs\n| where TimeGenerated \u003e= ago(1h)\n| summarize\n    SigninAttempts = count(),\n    FirstSeen = min(TimeGenerated),\n    LastSeen = max(TimeGenerated)\n    by UserPrincipalName, IPAddress\n| where SigninAttempts \u003e= 5",
+                                             "queryFrequency":  "PT1H",
+                                             "queryPeriod":  "PT1H",
+                                             "triggerOperator":  "GreaterThan",
+                                             "triggerThreshold":  0,
+                                             "suppressionDuration":  "PT5H",
+                                             "suppressionEnabled":  false,
+                                             "startTimeUtc":  null,
+                                             "tactics":  [
+
+                                                         ],
+                                             "techniques":  [
+
+                                                            ],
+                                             "subTechniques":  [
+
+                                                               ],
+                                             "alertRuleTemplateName":  null,
+                                             "incidentConfiguration":  {
+                                                                           "createIncident":  false,
+                                                                           "groupingConfiguration":  {
+                                                                                                         "enabled":  false,
+                                                                                                         "reopenClosedIncident":  false,
+                                                                                                         "lookbackDuration":  "PT1H",
+                                                                                                         "matchingMethod":  "AllEntities",
+                                                                                                         "groupByEntities":  [
+
+                                                                                                                             ],
+                                                                                                         "groupByAlertDetails":  [
+
+                                                                                                                                 ],
+                                                                                                         "groupByCustomDetails":  [
+
+                                                                                                                                  ]
+                                                                                                     }
+                                                                       },
+                                             "eventGroupingSettings":  {
+                                                                           "aggregationKind":  "AlertPerResult"
+                                                                       },
+                                             "alertDetailsOverride":  null,
+                                             "customDetails":  null,
+                                             "entityMappings":  null,
+                                             "sentinelEntitiesMappings":  null,
+                                             "templateVersion":  null
+                                         }
+                      }
+                  ]
+}
