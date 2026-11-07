@@ -24,7 +24,7 @@ jobs:
       resourceGroupName: 'Production-RG'
       workspaceName: 'Microsoft-Sentinel-PROD'
       workspaceId: '049b3330-bf37-4890-bb84-9702c1f18a70'
-      directory: '${{ github.workspace }}/Analytics-Rules'
+      directory: '${{ github.workspace }}'
       cloudEnv: 'AzureCloud'
       contentTypes: 'AnalyticsRule'
       branch: 'main'
