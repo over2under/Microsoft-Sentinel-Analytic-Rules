@@ -15,7 +15,7 @@
                           "apiVersion":  "2023-12-01-preview",
                           "properties":  {
                                              "displayName":  "Test Signin Rule",
-                                             "description":  "CI/CD deployment validation - version 1",
+                                             "description":  "CI/CD deployment validation - version 2",
                                              "severity":  "Medium",
                                              "enabled":  false,
                                              "query":  "SigninLogs\n| where TimeGenerated \u003e= ago(1h)\n| summarize\n    SigninAttempts = count(),\n    FirstSeen = min(TimeGenerated),\n    LastSeen = max(TimeGenerated)\n    by UserPrincipalName, IPAddress\n| where SigninAttempts \u003e= 5",
